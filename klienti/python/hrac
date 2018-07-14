@@ -2,17 +2,13 @@
 import sys
 from functools import total_ordering
 
+
 def load_list(load_element):
     size = int(input())
     res = []
     for _ in range(size):
         res.append(load_element())
     return res
-
-def save_list(l, save_element):
-    print(len(l))
-    for element in l:
-        save_element(element)
 
 
 class Teren:
@@ -25,7 +21,14 @@ class Teren:
         self.data = load_list(load_list_of_int)
 
     def __str__(self):
-        save_list(self.data, lambda x: save_list(x, print))
+        flat = [len(self.data)]
+        for row in self.data:
+            flat.append(len(row))
+            flat.extend(col for col in row)
+
+        return '{}'.format(
+            '\n'.join(map(str, flat))
+        )
 
 
 class Mapa:
@@ -42,10 +45,12 @@ class Mapa:
         self.priblizny_teren.load()
 
     def __str__(self):
-        print(self.pocet_hracov)
-        print(self.w)
-        print(self.h)
-        print(priblizny_teren)
+        return '{}\n{}\n{}\n{}'.format(
+            self.pocet_hracov,
+            self.w,
+            self.h,
+            self.priblizny_teren
+        )
 
 
 class Stav:
@@ -103,12 +108,3 @@ class Bod:
 
     def __str__(self):
         return '{}\n{}'.format(self.x, self.y)
-
-
-
-mapa = Mapa()
-mapa.load()
-
-print('{} {}'.format(mapa.w, mapa.h), file=sys.stderr)
-for l in mapa.priblizny_teren.data:
-    print(''.join(map(str,l)), file=sys.stderr)
