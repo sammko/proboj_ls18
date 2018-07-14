@@ -45,6 +45,32 @@ class Mapa:
         print(self.h)
         print(priblizny_teren)
 
+
+class Stav:
+    def __init__(self, hraci, manici, cas, dalsi_id):
+        self.hraci = hraci
+        self.manici = manici
+        self.cas = cas
+        self.dalsi_id = dalsi_id
+
+    @classmethod
+    def form_stdin(cls):
+        hraci = load_list(lambda: int(input()))
+        manici = load_list(lambda: int(input()))
+        dalsi_id = int(input())
+        cas = int(input())
+        return Stav(hraci, manici, cas, dalsi_id)
+
+    def __str__(self):
+        return '{}\n{}\n{}\n{}\n{}\n{}'.format(
+            len(self.hraci),
+            '\n'.join(map(str, self.hraci)),
+            len(self.manici),
+            '\n'.join(map(str, self.manici)),
+            self.dalsi_id,
+            self.cas
+        )
+
 mapa = Mapa()
 mapa.load()
 
