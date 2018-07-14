@@ -1,0 +1,3 @@
+[submodule "klienti/turbot"]
+	path = klienti/turbot
+	url = git@sammserver.com:turbot.git
