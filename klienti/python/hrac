@@ -71,6 +71,22 @@ class Stav:
             self.cas
         )
 
+
+class Prikaz:
+    def __init__(kto, typ, ciel, parameter):
+        self.kto = kto
+        self.typ = typ
+        self.ciel = ciel
+        self.parameter = parameter
+
+    def __str__(self):
+        return '{}\n{}\n{}\n{}'.format(
+            self.kto,
+            self.typ,
+            self.ciel,
+            self.parameter
+        )
+
 mapa = Mapa()
 mapa.load()
 
