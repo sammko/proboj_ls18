@@ -2,8 +2,9 @@
 SERVERDIR = ../server
 CXXFLAGS = -O2 -MMD -MP -Wall -I$(SERVERDIR)
 
-CXXFLAGS += $(shell sdl-config --cflags)
-LDLIBS += $(shell sdl-config --libs) -lSDL_ttf -lSDL_image
+SDL_CONFIG = ~/net/proboj/kniznice/bin/sdl-config
+CXXFLAGS += $(shell $(SDL_CONFIG) --cflags)
+LDLIBS += $(shell $(SDL_CONFIG) --libs) -lSDL2_image -lX11
 
 CLEAN = *.d *.o observer
 
